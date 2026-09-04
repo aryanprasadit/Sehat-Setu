@@ -1,0 +1,6 @@
+{
+  "name": "SehatSetu - Healthcare Without Barriers",
+  "description": "Multilingual, accessibility-first, voice-first, offline-first digital healthcare platform connecting citizens, Mitra AI, ASHA workers, doctors, and government.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

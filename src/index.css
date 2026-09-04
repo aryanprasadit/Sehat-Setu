@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary-deep: #164E47;
+    --color-secondary-dark: #1F5C54;
+    --color-healthcare-green: #2E8B57;
+    --color-accent-orange: #F9A01B;
+    --color-warm-offwhite: #F5F2EA;
+    --color-primary-text: #173B3A;
+    --color-secondary-text: #607574;
+    --color-emergency-red: #D92D20;
+    --color-supporting-blue: #1976D2;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* Pulse animation for Hriday Scan and SOS */
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  15% { transform: scale(1.18); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.12); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.animate-heart-pulse {
+  animation: heartPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes radarWave {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+.animate-radar-wave {
+  animation: radarWave 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+

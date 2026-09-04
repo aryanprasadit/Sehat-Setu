@@ -1,0 +1,63 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Health check / connection test collection
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // User accounts
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if isValidId(userId);
+      allow delete: if isOwner(userId);
+    }
+
+    // Appointments
+    match /appointments/{appointmentId} {
+      allow read: if true;
+      allow create, update: if isValidId(appointmentId);
+      allow delete: if isSignedIn();
+    }
+
+    // Medical Records
+    match /medicalRecords/{recordId} {
+      allow read: if true;
+      allow create, update: if isValidId(recordId);
+      allow delete: if isSignedIn();
+    }
+
+    // Medicine Schedules
+    match /medicines/{medicineId} {
+      allow read: if true;
+      allow create, update: if isValidId(medicineId);
+      allow delete: if isSignedIn();
+    }
+
+    // Consent Access Requests
+    match /accessRequests/{requestId} {
+      allow read: if true;
+      allow create, update: if isValidId(requestId);
+      allow delete: if isSignedIn();
+    }
+
+    // Facility OPD Queues
+    match /queues/{facilityId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
